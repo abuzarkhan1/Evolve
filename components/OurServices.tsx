@@ -22,20 +22,20 @@ const services = [
     techs: ["React Native"],
   },
   {
-    id: 3,
-    icon: <FaDatabase size={24} />,
-    title: "Data Science",
-    description:
-      "Transform raw data into actionable insights using advanced analytics and machine learning.",
-    techs: ["Python", "TensorFlow", "PyTorch", "Pandas"],
-  },
-  {
     id: 4,
     icon: <FaGamepad size={24} />,
     title: "Game Development",
     description:
       "Immersive gaming experiences across multiple platforms using cutting-edge technologies.",
     techs: ["Unity", "Unreal Engine", "C++"],
+  },
+  {
+    id: 3,
+    icon: <FaDatabase size={24} />,
+    title: "Data Science",
+    description:
+      "Transform raw data into actionable insights using advanced analytics and machine learning.",
+    techs: ["Python", "TensorFlow", "PyTorch", "Pandas"],
   },
 ];
 

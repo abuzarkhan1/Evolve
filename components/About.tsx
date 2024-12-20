@@ -82,11 +82,11 @@ const About = () => {
                 Our Vision
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                At Evolve Solutions, we're more than just developers – we're
-                digital innovators passionate about transforming businesses
-                through cutting-edge technology. Our expertise spans from
-                complex enterprise solutions to innovative startup applications,
-                always delivering excellence at every step.
+                At Evolve Solutions, we&apos;re more than just developers –
+                we&apos;re digital innovators passionate about transforming
+                businesses through cutting-edge technology. Our expertise spans
+                from complex enterprise solutions to innovative startup
+                applications, always delivering excellence at every step.
               </p>
             </div>
 
