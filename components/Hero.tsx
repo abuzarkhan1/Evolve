@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { Spotlight } from "./ui/Spotlight";
 import MagicButton from "./MagicButton";
-import { FaRocket, FaCode } from "react-icons/fa6";
+import { FaRocket } from "react-icons/fa6";
 
 const Hero = () => {
   return (
@@ -85,7 +85,7 @@ const Hero = () => {
             title="Explore Our Services"
             icon={<FaRocket />}
             position="right"
-            className="scale-110"
+            otherClasses="scale-110" // Corrected from `className` to `otherClasses`
           />
         </motion.div>
       </div>
