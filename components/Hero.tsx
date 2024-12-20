@@ -68,8 +68,8 @@ const Hero = () => {
               Turning Complex Challenges into Elegant Solutions
             </p>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              We don't just write code – we architect digital experiences that
-              transform businesses and define the future of technology.
+              We don&apos;t just write code – we architect digital experiences
+              that transform businesses and define the future of technology.
             </p>
           </motion.div>
         </div>
