@@ -4,7 +4,16 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { Spotlight } from "./ui/Spotlight";
 import { FaCode, FaMobile, FaDatabase, FaGamepad } from "react-icons/fa6";
 
-const services = [
+// Define the type for a service
+type Service = {
+  id: number;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  techs: string[];
+};
+
+const services: Service[] = [
   {
     id: 1,
     icon: <FaCode size={24} />,
@@ -39,7 +48,14 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ service, index }) => {
+// Update ServiceCard with typed props
+const ServiceCard = ({
+  service,
+  index,
+}: {
+  service: Service;
+  index: number;
+}) => {
   return (
     <motion.div
       initial={{ y: 50, opacity: 0 }}
