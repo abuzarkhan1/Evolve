@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
-import { Spotlight } from "./ui/Spotlight";
 import { FaCode, FaMobile, FaDatabase, FaGamepad } from "react-icons/fa6";
 
 // Define the type for a service

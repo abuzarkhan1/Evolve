@@ -1,53 +1,108 @@
+import React from "react";
 import { FaLocationArrow } from "react-icons/fa6";
-
+import { motion } from "framer-motion";
 import { socialMedia } from "@/data";
 import MagicButton from "./MagicButton";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <footer className="w-full pt-20 pb-10" id="contact">
-      {/* background grid */}
-      <div className="w-full absolute left-0 -bottom-72 min-h-96">
-        <img
-          src="/footer-grid.svg"
-          alt="grid"
-          className="w-full h-full opacity-50 "
-        />
-      </div>
+    <footer className="w-full pt-20 pb-10 relative" id="contact">
+      {/* Content Container */}
+      <motion.div
+        className="relative z-10 max-w-7xl mx-auto px-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Main Content */}
+        <motion.div
+          className="flex flex-col items-center text-center"
+          variants={itemVariants}
+        >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-400 to-white lg:max-w-[45vw] mb-6">
+            Ready to take <span className="text-purple-500">your</span> digital
+            presence to the next level?
+          </h1>
+          <motion.p
+            className="text-gray-300 md:text-lg max-w-2xl md:mt-10 my-5 leading-relaxed"
+            variants={itemVariants}
+          >
+            Reach out to us today and let&apos;s discuss how we can help you to
+            achieve your goals and transform your digital vision into reality.
+          </motion.p>
 
-      <div className="flex flex-col items-center">
-        <h1 className="heading lg:max-w-[45vw]">
-          Ready to take <span className="text-purple">your</span> digital
-          presence to the next level?
-        </h1>
-        <p className="text-white-200 md:mt-10 my-5 text-center">
-          Reach out to us today and let&apos;s discuss how we can help you to
-          achieve your goals.
-        </p>
-        <a href="mailto:abuzarkhan1242@gmail.com">
-          <MagicButton
-            title="Let's get in touch"
-            icon={<FaLocationArrow />}
-            position="right"
-          />
-        </a>
-      </div>
-      <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
-        <p className="md:text-base text-sm md:font-normal font-light">
-          Copyright © 2024 Evolve Solutions
-        </p>
-
-        <div className="flex items-center md:gap-3 gap-6">
-          {socialMedia.map((info) => (
-            <div
-              key={info.id}
-              className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <a
+              href="mailto:contact@evolvesolutions.com"
+              className="inline-block"
             >
-              <img src={info.img} alt="icons" width={20} height={20} />
-            </div>
-          ))}
-        </div>
-      </div>
+              <MagicButton
+                title="Let's get in touch"
+                icon={<FaLocationArrow />}
+                position="right"
+              />
+            </a>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 w-full max-w-4xl mx-auto"
+            variants={itemVariants}
+          ></motion.div>
+        </motion.div>
+
+        {/* Bottom Bar */}
+        <motion.div
+          className="flex mt-16 md:flex-row flex-col gap-8 justify-between items-center border-t border-gray-800 pt-8"
+          variants={itemVariants}
+        >
+          <p className="text-gray-400 md:text-base text-sm">
+            © {currentYear} Evolve Solutions. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-4">
+            {socialMedia.map((info) => (
+              <motion.a
+                key={info.id}
+                href="#"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="w-10 h-10 flex justify-center items-center backdrop-blur-lg bg-black-200/75 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors"
+              >
+                <img
+                  src={info.img}
+                  alt={`${info.id} icon`}
+                  className="w-5 h-5 opacity-75 hover:opacity-100 transition-opacity"
+                />
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 };
