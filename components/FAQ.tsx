@@ -1,10 +1,23 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
-import { Spotlight } from "./ui/Spotlight";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 
-const faqs = [
+// Define the FAQ type
+type FAQType = {
+  id: number;
+  question: string;
+  answer: string;
+};
+
+// Define the props for FAQItem
+interface FAQItemProps {
+  faq: FAQType;
+  isOpen: boolean;
+  onToggle: (id: number) => void;
+}
+
+const faqs: FAQType[] = [
   {
     id: 1,
     question: "What development methodologies do you follow?",
@@ -31,7 +44,7 @@ const faqs = [
   },
 ];
 
-const FAQItem = ({ faq, isOpen, onToggle }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ faq, isOpen, onToggle }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -69,9 +82,9 @@ const FAQItem = ({ faq, isOpen, onToggle }) => {
 };
 
 const FAQ = () => {
-  const [openId, setOpenId] = React.useState(null);
+  const [openId, setOpenId] = React.useState<number | null>(null);
 
-  const handleToggle = (id: any) => {
+  const handleToggle = (id: number) => {
     setOpenId(openId === id ? null : id);
   };
 
