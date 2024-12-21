@@ -47,7 +47,6 @@ const services: Service[] = [
   },
 ];
 
-// Update ServiceCard with typed props
 const ServiceCard = ({
   service,
   index,
@@ -94,7 +93,10 @@ const ServiceCard = ({
 
 const OurServices = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden py-20">
+    <div
+      id="services-section"
+      className="min-h-screen relative overflow-hidden py-20"
+    >
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-16">

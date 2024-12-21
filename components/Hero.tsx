@@ -6,6 +6,18 @@ import MagicButton from "./MagicButton";
 import { FaRocket } from "react-icons/fa6";
 
 const Hero = () => {
+  const scrollToServices = () => {
+    // Find the services section element
+    const servicesSection = document.getElementById("services-section");
+
+    if (servicesSection) {
+      servicesSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen pb-20 pt-31 mt-12 relative overflow-hidden">
       {/* Enhanced Spotlights for more dynamic background */}
@@ -16,11 +28,11 @@ const Hero = () => {
         />
         <Spotlight
           className="top-60 right-0 h-screen w-[45vw]"
-          fill="rgba(147, 51, 234, 0.7)" // More vibrant purple
+          fill="rgba(147, 51, 234, 0.7)"
         />
         <Spotlight
           className="bottom-0 left-1/3 h-screen w-[50vw]"
-          fill="rgba(59, 130, 246, 0.6)" // More vibrant blue
+          fill="rgba(59, 130, 246, 0.6)"
         />
       </div>
 
@@ -74,7 +86,7 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Enhanced CTA section */}
+        {/* Enhanced CTA section with scroll functionality */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -85,7 +97,8 @@ const Hero = () => {
             title="Explore Our Services"
             icon={<FaRocket />}
             position="right"
-            otherClasses="scale-110" // Corrected from `className` to `otherClasses`
+            otherClasses="scale-110"
+            onClick={scrollToServices}
           />
         </motion.div>
       </div>
