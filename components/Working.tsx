@@ -110,7 +110,7 @@ const WorkingHours = () => {
         >
           <p className="text-gray-300">
             Outside of our regular business hours? No worries! Leave us a
-            message and we'll get back to you within 24 hours.
+            message and we&#39;ll get back to you within 24 hours.
           </p>
         </motion.div>
       </div>
