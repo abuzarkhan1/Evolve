@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { FaCode, FaDatabase, FaGamepad } from "react-icons/fa6";
-import { FaCloudUploadAlt } from "react-icons/fa"; // New DevOps icon
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 // Define the type for a service
 type Service = {
@@ -57,27 +57,76 @@ const ServiceCard = ({
 }) => {
   return (
     <motion.div
-      initial={{ y: 50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: index * 0.2, duration: 0.5 }}
+      initial={{
+        opacity: 0,
+        y: 50,
+        filter: "brightness(0.2)",
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        filter: "brightness(1)",
+      }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.8,
+        delay: index * 0.2,
+        filter: { duration: 1 },
+      }}
       className="relative group w-full md:w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)] bg-black/20 backdrop-blur-sm rounded-xl p-6 hover:bg-black/30 transition-all duration-300 border border-white/10 hover:border-purple-500/50"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
 
       <div className="relative z-10">
-        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            delay: index * 0.2 + 0.3,
+            duration: 0.5,
+          }}
+          className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+        >
           {service.icon}
-        </div>
+        </motion.div>
 
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text mb-3">
+        <motion.h3
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            delay: index * 0.2 + 0.4,
+            duration: 0.5,
+          }}
+          className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text mb-3"
+        >
           {service.title}
-        </h3>
+        </motion.h3>
 
-        <p className="text-gray-300 mb-4 leading-relaxed">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            delay: index * 0.2 + 0.5,
+            duration: 0.5,
+          }}
+          className="text-gray-300 mb-4 leading-relaxed"
+        >
           {service.description}
-        </p>
+        </motion.p>
 
-        <div className="flex flex-wrap gap-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            delay: index * 0.2 + 0.6,
+            duration: 0.5,
+          }}
+          className="flex flex-wrap gap-2"
+        >
           {service.techs.map((tech, idx) => (
             <span
               key={idx}
@@ -86,7 +135,7 @@ const ServiceCard = ({
               {tech}
             </span>
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
@@ -100,21 +149,28 @@ const OurServices = () => {
     >
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <TextGenerateEffect
             words="Our Expertise & Services"
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text"
           />
           <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto"
           >
             Leveraging cutting-edge technologies to deliver innovative solutions
             across multiple domains
           </motion.p>
-        </div>
+        </motion.div>
 
         <div className="flex flex-wrap justify-center gap-8 mt-12">
           {services.map((service, index) => (

@@ -34,22 +34,6 @@ const values = [
 const About = () => {
   return (
     <section className="min-h-screen relative overflow-hidden py-20">
-      {/* Background effects */}
-      <div className="absolute inset-0 z-0">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 h-screen w-[40vw]"
-          fill="rgba(59, 130, 246, 0.5)"
-        />
-        <Spotlight
-          className="top-60 right-0 h-screen w-[45vw]"
-          fill="rgba(147, 51, 234, 0.4)"
-        />
-      </div>
-
-      <div className="absolute inset-0 bg-black-100 bg-grid-white/[0.02]">
-        <div className="absolute inset-0 bg-black-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-      </div>
-
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6">
         {/* Header */}
