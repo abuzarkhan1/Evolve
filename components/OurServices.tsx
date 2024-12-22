@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
-import { FaCode, FaMobile, FaDatabase, FaGamepad } from "react-icons/fa6";
+import { FaCode, FaDatabase, FaGamepad } from "react-icons/fa6";
+import { FaCloudUploadAlt } from "react-icons/fa"; // New DevOps icon
 
 // Define the type for a service
 type Service = {
@@ -23,11 +24,11 @@ const services: Service[] = [
   },
   {
     id: 2,
-    icon: <FaMobile size={24} />,
-    title: "App Development",
+    icon: <FaCloudUploadAlt size={24} />,
+    title: "DevOps",
     description:
-      "Native and cross-platform mobile applications that deliver exceptional user experiences.",
-    techs: ["React Native"],
+      "Streamline development operations with automated CI/CD pipelines, container orchestration.",
+    techs: ["Docker", "Kubernetes", "AWS", "Jenkins", "CI/CD"],
   },
   {
     id: 4,
