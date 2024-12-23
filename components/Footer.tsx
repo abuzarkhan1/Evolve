@@ -55,7 +55,7 @@ const Footer = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="text-lg md:text-xl text-blue-400 font-semibold"
           >
-            Let's Create Something Extraordinary Together
+            Let&apos;s Create Something Extraordinary Together
           </motion.p>
         </motion.div>
 
