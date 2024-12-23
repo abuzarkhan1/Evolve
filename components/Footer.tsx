@@ -1,108 +1,144 @@
 import React from "react";
-import { FaLocationArrow } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { socialMedia } from "@/data";
-import MagicButton from "./MagicButton";
+import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import {
+  FaLocationArrow,
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa6";
+
+const socialLinks = [
+  {
+    id: "linkedin",
+    icon: <FaLinkedin className="w-5 h-5" />,
+    href: "#",
+  },
+  {
+    id: "github",
+    icon: <FaGithub className="w-5 h-5" />,
+    href: "#",
+  },
+  {
+    id: "twitter",
+    icon: <FaTwitter className="w-5 h-5" />,
+    href: "#",
+  },
+  {
+    id: "instagram",
+    icon: <FaInstagram className="w-5 h-5" />,
+    href: "#",
+  },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <footer className="w-full pt-20 pb-10 relative" id="contact">
-      {/* Content Container */}
-      <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Main Content */}
+    <footer className="relative overflow-hidden py-20" id="contact">
+      <div className="relative z-10 container mx-auto px-6">
+        {/* Header */}
         <motion.div
-          className="flex flex-col items-center text-center"
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-400 to-white lg:max-w-[45vw] mb-6">
-            Ready to take <span className="text-purple-500">your</span> digital
-            presence to the next level?
-          </h1>
+          <TextGenerateEffect
+            words="Ready to Transform Your Digital Vision?"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text"
+          />
           <motion.p
-            className="text-gray-300 md:text-lg max-w-2xl md:mt-10 my-5 leading-relaxed"
-            variants={itemVariants}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="text-lg md:text-xl text-blue-400 font-semibold"
           >
-            Reach out to us today and let&apos;s discuss how we can help you to
-            achieve your goals and transform your digital vision into reality.
+            Let's Create Something Extraordinary Together
           </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <a
-              href="mailto:contact@evolvesolutions.com"
-              className="inline-block"
-            >
-              <MagicButton
-                title="Let's get in touch"
-                icon={<FaLocationArrow />}
-                position="right"
-              />
-            </a>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 w-full max-w-4xl mx-auto"
-            variants={itemVariants}
-          ></motion.div>
         </motion.div>
 
-        {/* Bottom Bar */}
+        {/* Contact Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {[
+            {
+              title: "Email Us",
+              content: "contact@evolvesolutions.com",
+              icon: <FaLocationArrow className="w-6 h-6 text-purple-400" />,
+            },
+            {
+              title: "Our Location",
+              content: "Mardan",
+              icon: <FaLocationArrow className="w-6 h-6 text-blue-400" />,
+            },
+            {
+              title: "Working Hours",
+              content: "Mon - Fri: 9AM - 6PM",
+              icon: <FaLocationArrow className="w-6 h-6 text-yellow-400" />,
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-2xl bg-black/20 border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300"
+            >
+              <div className="flex items-start space-x-4">
+                <motion.div
+                  className="p-3 rounded-lg bg-white/5"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  {item.icon}
+                </motion.div>
+                <div>
+                  <h4 className="text-xl font-semibold text-white mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-400">{item.content}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Social Links */}
         <motion.div
-          className="flex mt-16 md:flex-row flex-col gap-8 justify-between items-center border-t border-gray-800 pt-8"
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex justify-center space-x-6 mb-12"
         >
-          <p className="text-gray-400 md:text-base text-sm">
+          {socialLinks.map((link, index) => (
+            <motion.a
+              key={link.id}
+              href={link.href}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.1, y: -5 }}
+              className="p-3 rounded-lg bg-black/20 border border-white/10 backdrop-blur-sm hover:border-purple-500/50 text-gray-400 hover:text-white transition-all duration-300"
+            >
+              {link.icon}
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Copyright */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="text-center border-t border-white/10 pt-8"
+        >
+          <p className="text-gray-400">
             © {currentYear} Evolve Solutions. All rights reserved.
           </p>
-
-          <div className="flex items-center gap-4">
-            {socialMedia.map((info) => (
-              <motion.a
-                key={info.id}
-                href="#"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 flex justify-center items-center backdrop-blur-lg bg-black-200/75 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors"
-              >
-                <img
-                  src={info.img}
-                  alt={`${info.id} icon`}
-                  className="w-5 h-5 opacity-75 hover:opacity-100 transition-opacity"
-                />
-              </motion.a>
-            ))}
-          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </footer>
   );
 };

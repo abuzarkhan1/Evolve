@@ -37,7 +37,12 @@ const About = () => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <TextGenerateEffect
             words="Transforming Ideas Into Digital Reality"
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text"
@@ -50,18 +55,22 @@ const About = () => {
           >
             Where Innovation Meets Excellence
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Left Column */}
           <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <div className="space-y-4">
+            <motion.div
+              className="space-y-4"
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
                 Our Vision
               </h3>
@@ -72,52 +81,70 @@ const About = () => {
                 from complex enterprise solutions to innovative startup
                 applications, always delivering excellence at every step.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="space-y-4 pt-6">
+            <motion.div
+              className="space-y-4 pt-6"
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
                 Why Choose Us
               </h3>
               <ul className="space-y-3">
-                <li className="flex items-center space-x-3">
-                  <FaCode className="text-blue-400" />
-                  <span className="text-gray-300">
-                    Expert development team with diverse tech stack
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <FaStar className="text-blue-400" />
-                  <span className="text-gray-300">
-                    Proven track record of successful deliveries
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <FaChartLine className="text-blue-400" />
-                  <span className="text-gray-300">
-                    Scalable solutions for growing businesses
-                  </span>
-                </li>
+                {[
+                  {
+                    icon: <FaCode />,
+                    text: "Expert development team with diverse tech stack",
+                  },
+                  {
+                    icon: <FaStar />,
+                    text: "Proven track record of successful deliveries",
+                  },
+                  {
+                    icon: <FaChartLine />,
+                    text: "Scalable solutions for growing businesses",
+                  },
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.2, duration: 0.5 }}
+                    className="flex items-center space-x-3"
+                  >
+                    <span className="text-blue-400">{item.icon}</span>
+                    <span className="text-gray-300">{item.text}</span>
+                  </motion.li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Column - Values Cards */}
           <motion.div
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             className="space-y-6"
           >
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2, duration: 0.5 }}
+                whileHover={{ scale: 1.05, x: 10 }}
                 className="p-6 rounded-2xl bg-black/20 border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 rounded-lg bg-white/5">{value.icon}</div>
+                  <motion.div
+                    className="p-3 rounded-lg bg-white/5"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {value.icon}
+                  </motion.div>
                   <div>
                     <h4 className="text-xl font-semibold text-white mb-2">
                       {value.title}

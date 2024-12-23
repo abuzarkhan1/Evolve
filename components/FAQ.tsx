@@ -1,16 +1,15 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import { Spotlight } from "./ui/Spotlight";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 
-// Define the FAQ type
 type FAQType = {
   id: number;
   question: string;
   answer: string;
 };
 
-// Define the props for FAQItem
 interface FAQItemProps {
   faq: FAQType;
   isOpen: boolean;
@@ -37,7 +36,7 @@ const faqs: FAQType[] = [
       "We combine cutting-edge technology with robust development practices. Each project benefits from our full-stack expertise, cloud-native approach, and emphasis on scalable, maintainable code. We also prioritize security and performance optimization from day one.",
   },
   {
-    id: 5,
+    id: 4,
     question: "How do you ensure project security and data privacy?",
     answer:
       "Security is built into every phase of development. We follow OWASP guidelines, implement encryption protocols, and conduct regular security audits. All our solutions comply with relevant data protection regulations like GDPR and CCPA.",
@@ -48,32 +47,57 @@ const FAQItem: React.FC<FAQItemProps> = ({ faq, isOpen, onToggle }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       className="border border-white/10 rounded-lg overflow-hidden backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300"
     >
-      <button
+      <motion.button
         onClick={() => onToggle(faq.id)}
+        whileHover={{ x: 10 }}
+        transition={{ type: "spring", stiffness: 300 }}
         className="w-full p-6 text-left bg-black/20 flex justify-between items-center"
       >
         <span className="text-lg font-semibold text-white">{faq.question}</span>
-        <span className="text-purple-400 ml-4">
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-purple-400 ml-4"
+        >
           {isOpen ? <FaMinus size={16} /> : <FaPlus size={16} />}
-        </span>
-      </button>
+        </motion.span>
+      </motion.button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+              transition: {
+                height: { duration: 0.4 },
+                opacity: { duration: 0.3, delay: 0.1 },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: { duration: 0.3 },
+                opacity: { duration: 0.2 },
+              },
+            }}
             className="overflow-hidden"
           >
-            <div className="p-6 text-gray-300 leading-relaxed bg-black/10">
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -20, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="p-6 text-gray-300 leading-relaxed bg-black/10"
+            >
               {faq.answer}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -92,7 +116,12 @@ const FAQ = () => {
     <section className="min-h-screen relative overflow-hidden py-20">
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <TextGenerateEffect
             words="Frequently Asked Questions"
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text"
@@ -105,18 +134,29 @@ const FAQ = () => {
           >
             Get answers to common questions about our services and process
           </motion.p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
-          {faqs.map((faq) => (
-            <FAQItem
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-3xl mx-auto space-y-4"
+        >
+          {faqs.map((faq, index) => (
+            <motion.div
               key={faq.id}
-              faq={faq}
-              isOpen={openId === faq.id}
-              onToggle={handleToggle}
-            />
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <FAQItem
+                faq={faq}
+                isOpen={openId === faq.id}
+                onToggle={handleToggle}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
